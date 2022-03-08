@@ -77,14 +77,7 @@ stages:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
             ArtifactName: '$(Build.Repository.Name)'
             publishLocation: 'Container'
-        # Publish the app
-        - task: DotNetCoreCLI@2
-          inputs:
-            command: 'publish'
-            publishWebProjects: false
-            projects: 'WorkshopSchedule/*.csproj'
-            zipAfterPublish: false
-            modifyOutputPath: false
+
   - stage: Deploy
     displayName: Deploy to production
     jobs:
@@ -93,6 +86,14 @@ stages:
       pool:
         vmImage: ubuntu-latest
       steps:
+        # Publish the app
+        - task: DotNetCoreCLI@2
+          inputs:
+            command: 'publish'
+            publishWebProjects: false
+            projects: '**/*.csproj'
+            zipAfterPublish: false
+            modifyOutputPath: false
         - task: DockerCompose@0
           inputs:
             containerregistrytype: 'Container Registry'
