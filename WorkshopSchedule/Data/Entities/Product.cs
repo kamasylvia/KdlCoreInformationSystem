@@ -3,4 +3,4 @@
 /// <summary>
 /// 产品
 /// </summary>
-public class Product : SharedLibrary.Entities.Product { }
+public class Product : SharedResources.Entities.Product { }

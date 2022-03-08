@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using MassTransit;
-using SharedLibrary.Enums;
+using SharedResources.Enums;
 
-namespace SharedLibrary.Entities;
+namespace SharedResources.Entities;
 
 /// <summary>
 /// 产品

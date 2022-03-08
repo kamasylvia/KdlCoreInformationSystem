@@ -8,7 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["WorkshopSchedule/WorkshopSchedule.csproj", "WorkshopSchedule/"]
-COPY ["SharedLibrary/SharedLibrary.csproj", "SharedLibrary/"]
+COPY ["SharedResources/SharedResources.csproj", "SharedResources/"]
 RUN dotnet restore "WorkshopSchedule/WorkshopSchedule.csproj"
 COPY . .
 WORKDIR "/src/WorkshopSchedule"

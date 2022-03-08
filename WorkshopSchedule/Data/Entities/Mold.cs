@@ -3,4 +3,4 @@
 /// <summary>
 /// 模具
 /// </summary>
-public class Mold : SharedLibrary.Entities.Mold { }
+public class Mold : SharedResources.Entities.Mold { }

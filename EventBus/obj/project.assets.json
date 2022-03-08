@@ -1,39 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
-      "NewId/3.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/NewId.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/NewId.dll": {}
-        }
-      }
-    }
+    "net6.0": {}
   },
-  "libraries": {
-    "NewId/3.0.3": {
-      "sha512": "72cBqYQ+pZpsfuTerhi5Q/ZkfK81s/Dkz2u0WNytirWVLktUm6sy4mRNepM+DL1AB0V61QlYesZHDf0wlmMU5A==",
-      "type": "package",
-      "path": "newid/3.0.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net452/NewId.dll",
-        "lib/net452/NewId.xml",
-        "lib/netstandard2.0/NewId.dll",
-        "lib/netstandard2.0/NewId.xml",
-        "newid.3.0.3.nupkg.sha512",
-        "newid.nuspec"
-      ]
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net6.0": [
-      "NewId >= 3.0.3"
-    ]
+    "net6.0": []
   },
   "packageFolders": {
     "/Users/Sylvia/.nuget/packages/": {}
@@ -41,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Sylvia/Projects/KDL/WorkshopSchedule/SharedLibrary/SharedLibrary.csproj",
-      "projectName": "SharedLibrary",
-      "projectPath": "/Users/Sylvia/Projects/KDL/WorkshopSchedule/SharedLibrary/SharedLibrary.csproj",
+      "projectUniqueName": "/Users/Sylvia/Projects/KDL/WorkshopSchedule/EventBus/EventBus.csproj",
+      "projectName": "EventBus",
+      "projectPath": "/Users/Sylvia/Projects/KDL/WorkshopSchedule/EventBus/EventBus.csproj",
       "packagesPath": "/Users/Sylvia/.nuget/packages/",
-      "outputPath": "/Users/Sylvia/Projects/KDL/WorkshopSchedule/SharedLibrary/obj/",
+      "outputPath": "/Users/Sylvia/Projects/KDL/WorkshopSchedule/EventBus/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/Sylvia/.nuget/NuGet/NuGet.Config"
@@ -71,12 +43,6 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
-        "dependencies": {
-          "NewId": {
-            "target": "Package",
-            "version": "[3.0.3, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using MassTransit;
 
-namespace SharedLibrary.Entities;
+namespace SharedResources.Entities;
 
 /// <summary>
 /// 模具
