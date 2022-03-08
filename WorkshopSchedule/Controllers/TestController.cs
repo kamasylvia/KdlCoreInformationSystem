@@ -1,15 +1,15 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WorkshopSchedule.Application.Queries.LarkQueries;
+using WorkshopSchedule.Application.Queries.TestQueries;
 
 namespace WorkshopSchedule.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class LarkController : ControllerBase
+public class TestController : ControllerBase
 {
     private readonly IMediator _mediator;
-    public LarkController(IMediator mediator)
+    public TestController(IMediator mediator)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }

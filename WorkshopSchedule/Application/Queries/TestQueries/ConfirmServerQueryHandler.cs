@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace WorkshopSchedule.Application.Queries.LarkQueries;
+namespace WorkshopSchedule.Application.Queries.TestQueries;
 
 public class ConfirmServerQueryHandler : IRequestHandler<ConfirmServerQuery, ConfirmServerResponse>
 {

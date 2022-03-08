@@ -66,7 +66,7 @@ try
     var app = builder.Build();
 
     // Seed database
-    await app.Services.SeedDbContextAsync(builder.Configuration, builder.Environment);
+    // await app.Services.SeedDbContextAsync(builder.Configuration, builder.Environment);
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())

@@ -1,15 +1,33 @@
 version: "3.4"
 
 services:
-  workshopschedule:
-    image: kamasylvia/kcis-workshopschedule:0.0.1
-    container_name: WorkshopSchedule
+  core-db:
+    image: postgres:alpine
+    container_name: KdlCoreDatabase
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      POSTGRES_DB: KDL
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123456
+      TZ: Asia/Shanghai
+      PGTZ: Asia/Shanghai
+    restart: always
+  workshop-schedule:
+    image: kamasylvia/kcis-workshop-schedule:0.0.1
+    container_name: KdlWorkshopSchedule
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      # - ASPNETCORE_URLS=https://+:443;http://+:80
+      - TZ=Asia/Shanghai
+    depends_on:
+      - core-db
+    links:
+      - core-db
     ports:
-      - 20162:443
+      - 20162:80
     volumes:
+      - ./Logs/WorkshopSchedule:/app/Logs
+      - ./Settings/WorkshopSchedule/appsettings.json:/app/appsettings.json
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
     restart: always
