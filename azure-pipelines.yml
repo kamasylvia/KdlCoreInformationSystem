@@ -60,23 +60,31 @@ stages:
               git add -A
               git commit --allow-empty -m "Format source code with CSharpier [skip ci]"
               git push
-        # Copy required files to Artiface
+        # Copy required files to Artifact
         - task: CopyFiles@2
           inputs:
             Contents: |
               docker-compose.yml
               README.md
+              Settings/**
             TargetFolder: '$(Build.ArtifactStagingDirectory)'
             CleanTargetFolder: true
             OverWrite: true
 
-        # Publish
+        # Publish the Artifacts
         - task: PublishBuildArtifacts@1
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
             ArtifactName: '$(Build.Repository.Name)'
             publishLocation: 'Container'
-
+        # Publish the app
+        - task: DotNetCoreCLI@2
+          inputs:
+            command: 'publish'
+            publishWebProjects: false
+            projects: 'WorkshopSchedule/*.csproj'
+            zipAfterPublish: false
+            modifyOutputPath: false
   - stage: Deploy
     displayName: Deploy to production
     jobs:
