@@ -7,7 +7,10 @@ trigger:
   batch: true
   branches:
     include:
+      - main
+      - master
       - dev
+      - test
 
 resources:
 - repo: self
