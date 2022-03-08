@@ -1,0 +1,7 @@
+version: "3.4"
+
+services:
+  workshopschedule:
+    build:
+      context: .
+      dockerfile: WorkshopSchedule/Dockerfile

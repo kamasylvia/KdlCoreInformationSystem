@@ -1,0 +1,15 @@
+version: "3.4"
+
+services:
+  workshopschedule:
+    image: kamasylvia/kcis-workshopschedule:0.0.1
+    container_name: WorkshopSchedule
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - 20162:443
+    volumes:
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    restart: always

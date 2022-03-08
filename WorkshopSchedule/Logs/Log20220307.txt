@@ -1,0 +1,132 @@
+
+Date：2022-03-07 17:14:10.721
+LogLevel：Information
+Message：Starting web host
+
+Date：2022-03-07 17:14:17.946
+LogLevel：Information
+Message：Now listening on: "https://localhost:7296"
+
+Date：2022-03-07 17:14:17.960
+LogLevel：Information
+Message：Now listening on: "http://localhost:5298"
+
+Date：2022-03-07 17:14:17.977
+LogLevel：Information
+Message：Application started. Press Ctrl+C to shut down.
+
+Date：2022-03-07 17:14:17.978
+LogLevel：Information
+Message：Hosting environment: "Development"
+
+Date：2022-03-07 17:14:17.984
+LogLevel：Information
+Message：Content root path: "/Users/Sylvia/Projects/KDL/WorkshopSchedule/WorkshopSchedule/"
+
+Date：2022-03-07 17:16:34.462
+LogLevel：Information
+Message：Request starting HTTP/1.1 POST http://localhost:5298/ application/json 271
+
+Date：2022-03-07 17:16:34.527
+LogLevel：Information
+Message：Request finished HTTP/1.1 POST http://localhost:5298/ application/json 271 - 307 0 - 68.9404ms
+
+Date：2022-03-07 17:16:38.274
+LogLevel：Information
+Message：Request starting HTTP/1.1 POST https://localhost:7296/ application/json 271
+
+Date：2022-03-07 17:16:38.279
+LogLevel：Information
+Message：Request finished HTTP/1.1 POST https://localhost:7296/ application/json 271 - 404 0 - 4.3444ms
+
+Date：2022-03-07 17:16:49.455
+LogLevel：Information
+Message：Request starting HTTP/1.1 POST http://localhost:5298/lark application/json 271
+
+Date：2022-03-07 17:16:49.460
+LogLevel：Information
+Message：Request finished HTTP/1.1 POST http://localhost:5298/lark application/json 271 - 307 0 - 4.4986ms
+
+Date：2022-03-07 17:16:49.471
+LogLevel：Information
+Message：Request starting HTTP/1.1 POST https://localhost:7296/lark application/json 271
+
+Date：2022-03-07 17:16:49.472
+LogLevel：Information
+Message：Request finished HTTP/1.1 POST https://localhost:7296/lark application/json 271 - 404 0 - 0.5628ms
+
+Date：2022-03-07 17:16:52.714
+LogLevel：Information
+Message：Request starting HTTP/1.1 POST http://localhost:5298/api/lark application/json 271
+
+Date：2022-03-07 17:16:52.716
+LogLevel：Information
+Message：Request finished HTTP/1.1 POST http://localhost:5298/api/lark application/json 271 - 307 0 - 2.5669ms
+
+Date：2022-03-07 17:16:52.720
+LogLevel：Information
+Message：Request starting HTTP/1.1 POST https://localhost:7296/api/lark application/json 271
+
+Date：2022-03-07 17:16:52.728
+LogLevel：Information
+Message：Executing endpoint '"WorkshopSchedule.Controllers.LarkController.ConfirmServer (WorkshopSchedule)"'
+
+Date：2022-03-07 17:16:52.786
+LogLevel：Information
+Message：Route matched with "{action = \"ConfirmServer\", controller = \"Lark\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WorkshopSchedule.Application.Queries.LarkQueries.ConfirmServerResponse]] ConfirmServer(WorkshopSchedule.Application.Queries.LarkQueries.ConfirmServerQuery)" on controller "WorkshopSchedule.Controllers.LarkController" ("WorkshopSchedule").
+
+Date：2022-03-07 17:16:52.836
+LogLevel：Information
+Message：Executing "BadRequestObjectResult", writing value of type '"Microsoft.AspNetCore.Mvc.ValidationProblemDetails"'.
+
+Date：2022-03-07 17:16:52.851
+LogLevel：Information
+Message：Executed action "WorkshopSchedule.Controllers.LarkController.ConfirmServer (WorkshopSchedule)" in 55.2868ms
+
+Date：2022-03-07 17:16:52.852
+LogLevel：Information
+Message：Executed endpoint '"WorkshopSchedule.Controllers.LarkController.ConfirmServer (WorkshopSchedule)"'
+
+Date：2022-03-07 17:16:52.852
+LogLevel：Information
+Message：Request finished HTTP/1.1 POST https://localhost:7296/api/lark application/json 271 - 400 - application/problem+json;+charset=utf-8 132.1384ms
+
+Date：2022-03-07 17:17:32.182
+LogLevel：Information
+Message：Request starting HTTP/1.1 POST http://localhost:5298/api/lark application/json 96
+
+Date：2022-03-07 17:17:32.183
+LogLevel：Information
+Message：Request finished HTTP/1.1 POST http://localhost:5298/api/lark application/json 96 - 307 0 - 0.4702ms
+
+Date：2022-03-07 17:17:32.322
+LogLevel：Information
+Message：Request starting HTTP/1.1 POST https://localhost:7296/api/lark application/json 96
+
+Date：2022-03-07 17:17:32.323
+LogLevel：Information
+Message：Executing endpoint '"WorkshopSchedule.Controllers.LarkController.ConfirmServer (WorkshopSchedule)"'
+
+Date：2022-03-07 17:17:32.323
+LogLevel：Information
+Message：Route matched with "{action = \"ConfirmServer\", controller = \"Lark\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WorkshopSchedule.Application.Queries.LarkQueries.ConfirmServerResponse]] ConfirmServer(WorkshopSchedule.Application.Queries.LarkQueries.ConfirmServerQuery)" on controller "WorkshopSchedule.Controllers.LarkController" ("WorkshopSchedule").
+
+Date：2022-03-07 17:17:32.369
+LogLevel：Information
+Message：Executing "OkObjectResult", writing value of type '"WorkshopSchedule.Application.Queries.LarkQueries.ConfirmServerResponse"'.
+
+Date：2022-03-07 17:17:32.371
+LogLevel：Information
+Message：Executed action "WorkshopSchedule.Controllers.LarkController.ConfirmServer (WorkshopSchedule)" in 47.6371ms
+
+Date：2022-03-07 17:17:32.372
+LogLevel：Information
+Message：Executed endpoint '"WorkshopSchedule.Controllers.LarkController.ConfirmServer (WorkshopSchedule)"'
+
+Date：2022-03-07 17:17:32.375
+LogLevel：Information
+Message：Request finished HTTP/1.1 POST https://localhost:7296/api/lark application/json 96 - 200 - application/json;+charset=utf-8 51.5648ms
+
+Date：2022-03-07 17:17:58.047
+LogLevel：Information
+Message：Application is shutting down...
