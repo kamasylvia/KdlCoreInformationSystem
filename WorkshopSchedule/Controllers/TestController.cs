@@ -9,6 +9,7 @@ namespace WorkshopSchedule.Controllers;
 public class TestController : ControllerBase
 {
     private readonly IMediator _mediator;
+
     public TestController(IMediator mediator)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));

@@ -4,7 +4,6 @@ using Serilog;
 using WorkshopSchedule.Data;
 using WorkshopSchedule.Data.Initializers;
 
-
 // Serilog
 IConfiguration _configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -17,12 +16,10 @@ IConfiguration _configuration = new ConfigurationBuilder()
     .AddEnvironmentVariables()
     .Build();
 
-
 Log.Logger = new LoggerConfiguration().ReadFrom
     .Configuration(_configuration)
     .Enrich.FromLogContext()
     .CreateLogger();
-
 
 try
 {
