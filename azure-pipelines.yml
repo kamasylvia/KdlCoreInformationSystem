@@ -1,0 +1,105 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - dev
+
+resources:
+- repo: self
+
+pool:
+  vmImage: windows-2022
+
+stages:
+  - stage: Source
+    displayName: Source code management
+    jobs:
+    - job: Format_and_Publish
+      displayName: Format source code and publish docker-compose required files to Azure DevOps or GitHub Release.
+      steps:
+        # Allow scripts to access the system token
+        - checkout: self
+          persistCredentials: true
+        # Install CSharpier
+        - task: DotNetCoreCLI@2
+          inputs:
+            command: 'custom'
+            custom: 'tool'
+            arguments: 'install -g csharpier'
+        # Run CSarpier to format the source code
+        - task: DotNetCoreCLI@2
+          inputs:
+            command: 'custom'
+            custom: 'csharpier'
+            arguments: '.'
+        # Copy EPlusActivities.API/appsettings.json to Settings/EPlusActivites.API
+        - task: CopyFiles@2
+          inputs:
+            SourceFolder: 'WorkshopSchedule'
+            Contents: 'appsettings.json'
+            TargetFolder: 'Settings/WorkshopSchedule'
+            OverWrite: true
+        # Before git commands, be sure your account's default identity is set
+        - task: CmdLine@2
+          continueOnError: true
+          inputs:
+            script: |
+              git config --global user.email "$(Email)"
+              git config --global user.name "$(Username)"
+        # Push formatted code back to remote repository
+        - task: CmdLine@2
+          continueOnError: true
+          inputs:
+            script: |
+              git checkout $(Build.SourceBranchName)
+              git add -A
+              git commit --allow-empty -m "Format source code with CSharpier [skip ci]"
+              git push
+        # Copy required files to Artiface
+        - task: CopyFiles@2
+          inputs:
+            Contents: |
+              docker-compose.yml
+              README.md
+            TargetFolder: '$(Build.ArtifactStagingDirectory)'
+            CleanTargetFolder: true
+            OverWrite: true
+
+        # Publish
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: '$(Build.Repository.Name)'
+            publishLocation: 'Container'
+
+  - stage: Deploy
+    displayName: Deploy to production
+    jobs:
+    - job: Containerization
+      displayName: Build image and push to DockerHub
+      pool:
+        vmImage: ubuntu-latest
+      steps:
+        - task: DockerCompose@0
+          inputs:
+            containerregistrytype: 'Container Registry'
+            dockerRegistryEndpoint: 'DockerHub'
+            dockerComposeFile: '**/docker-compose.yml'
+            additionalDockerComposeFiles: 'docker-compose.override.yml'
+            action: 'Build services'
+            includeLatestTag: true
+            nopIfNoDockerComposeFile: true
+        - task: DockerCompose@0
+          inputs:
+            containerregistrytype: 'Container Registry'
+            dockerRegistryEndpoint: 'DockerHub'
+            dockerComposeFile: '**/docker-compose.yml'
+            additionalDockerComposeFiles: 'docker-compose.override.yml'
+            action: 'Push services'
+            includeLatestTag: true
+            nopIfNoDockerComposeFile: true
