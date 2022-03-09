@@ -40,12 +40,18 @@ stages:
             command: 'custom'
             custom: 'csharpier'
             arguments: '.'
-        # Copy EPlusActivities.API/appsettings.json to Settings/EPlusActivites.API
+        # Copy inside container appsettings to outside Settings
         - task: CopyFiles@2
           inputs:
             SourceFolder: 'WorkshopSchedule'
             Contents: 'appsettings.json'
             TargetFolder: 'Settings/WorkshopSchedule'
+            OverWrite: true
+        - task: CopyFiles@2
+          inputs:
+            SourceFolder: 'LarkApiGateway'
+            Contents: 'appsettings.json'
+            TargetFolder: 'Settings/LarkApiGateway'
             OverWrite: true
         # Before git commands, be sure your account's default identity is set
         - task: CmdLine@2
