@@ -13,7 +13,7 @@ services:
     restart: always
   lark-api-gateway:
     image: kamasylvia/kcis-lark-api-gateway:0.0.1
-    container_name: :KcisApiGateways
+    container_name: KcisLarkApiGateway
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:80
@@ -28,7 +28,7 @@ services:
     restart: always
   lark-api-gateway-sidecar:
     image: daprio/daprd:edge
-    container_name: KcisApiGatewaysSidecar
+    container_name: KcisLarkApiGatewaySidecar
     command:
       [
         "./daprd",

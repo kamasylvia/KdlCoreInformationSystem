@@ -5,5 +5,5 @@ namespace LarkApiGateway.Application.Requests.Commands.EventBusCommands;
 
 public record LarkEventMessage : IRequest<LarkEventMessageResonseBase>
 {
-    public string Encrypt { get; set; }
+    public string? Encrypt { get; set; }
 }

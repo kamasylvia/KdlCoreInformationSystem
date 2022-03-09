@@ -24,28 +24,18 @@ public class AESCipher
     {
         var ciphertextBytes = Convert.FromBase64String(ciphertext);
 
-        // Aes
         using var aes = Aes.Create();
         aes.Key = _encryptKey;
         aes.IV = ciphertextBytes.Take(BlockSize).ToArray();
-        var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
-        using var msDecrypt = new MemoryStream(ciphertextBytes);
-        using var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read);
-        using var srDecrypt = new StreamReader(csDecrypt);
-        var plaintext = srDecrypt.ReadToEnd();
-        return plaintext;
+        aes.Mode = CipherMode.CBC;
 
-        // RijndaelManaged
-        var rijndaelManaged = new RijndaelManaged();
-        rijndaelManaged.Key = this._encryptKey;
-        rijndaelManaged.Mode = CipherMode.CBC;
-        rijndaelManaged.IV = ciphertextBytes.Take(BlockSize).ToArray();
-        var transform = rijndaelManaged.CreateDecryptor();
-        var blockBytes = transform.TransformFinalBlock(
+        var decryptor = aes.CreateDecryptor();
+        var blockBytes = decryptor.TransformFinalBlock(
             ciphertextBytes,
             BlockSize,
             ciphertextBytes.Length - BlockSize
         );
+
         return System.Text.Encoding.UTF8.GetString(blockBytes);
     }
 }
