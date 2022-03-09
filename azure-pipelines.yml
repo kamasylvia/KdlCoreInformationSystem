@@ -75,6 +75,7 @@ stages:
             Contents: |
               docker-compose.yml
               README.md
+              Dapr/**
               Settings/**
             TargetFolder: '$(Build.ArtifactStagingDirectory)'
             CleanTargetFolder: true
