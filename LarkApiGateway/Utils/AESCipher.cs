@@ -41,7 +41,11 @@ public class AESCipher
         rijndaelManaged.Mode = CipherMode.CBC;
         rijndaelManaged.IV = ciphertextBytes.Take(BlockSize).ToArray();
         var transform = rijndaelManaged.CreateDecryptor();
-        var blockBytes = transform.TransformFinalBlock(ciphertextBytes, BlockSize, ciphertextBytes.Length - BlockSize);
+        var blockBytes = transform.TransformFinalBlock(
+            ciphertextBytes,
+            BlockSize,
+            ciphertextBytes.Length - BlockSize
+        );
         return System.Text.Encoding.UTF8.GetString(blockBytes);
     }
 }

@@ -1,6 +1,3 @@
 namespace LarkApiGateway.Application.Responses.EventBusResponses;
 
-public abstract record LarkEventMessageResonseBase
-{
-
-}
+public abstract record LarkEventMessageResonseBase { }

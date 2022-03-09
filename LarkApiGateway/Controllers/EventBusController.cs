@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LarkApiGateway.Controllers;
 
-
 [ApiController]
 [Route("api/[controller]")]
 public class EventBusController : ControllerBase
