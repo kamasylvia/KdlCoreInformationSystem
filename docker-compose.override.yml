@@ -1,6 +1,10 @@
 version: "3.4"
 
 services:
+  lark-api-gateway:
+    build:
+      context: .
+      dockerfile: LarkApiGateway/Dockerfile
   workshop-schedule:
     build:
       context: .

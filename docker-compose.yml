@@ -3,7 +3,7 @@ version: "3.4"
 services:
   core-db:
     image: postgres:alpine
-    container_name: KdlCoreDatabase
+    container_name: KcisCoreDatabase
     environment:
       POSTGRES_DB: KDL
       POSTGRES_USER: root
@@ -11,11 +11,53 @@ services:
       TZ: Asia/Shanghai
       PGTZ: Asia/Shanghai
     restart: always
+  lark-api-gateway:
+    image: kamasylvia/kcis-lark-api-gateway:0.0.1
+    container_name: :KcisApiGateways
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Asia/Shanghai
+    ports:
+      - 20160:80
+    volumes:
+      - ./Logs/LarkApiGateway:/app/Logs
+      - ./Settings/LarkApiGateway/appsettings.json:/app/appsettings.json
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    restart: always
+  lark-api-gateway-sidecar:
+    image: daprio/daprd:edge
+    container_name: KcisApiGatewaysSidecar
+    command:
+      [
+        "./daprd",
+        "-app-id",
+        "LarkApiGateway",
+        "-app-port",
+        "80",
+        "-dapr-http-port",
+        "3500",
+        "-dapr-http-max-request-size",
+        "32",
+        "-placement-host-address",
+        "placement:50006",
+        "-components-path",
+        "/components",
+      ]
+    volumes:
+      - ./Dapr/Components/:/components:ro
+      - ./Dapr/Configurations/:/configurations:ro
+    depends_on:
+      - lark-api-gateway
+    network_mode: service:lark-api-gateway
+    restart: always
+
   workshop-schedule:
     image: kamasylvia/kcis-workshop-schedule:0.0.1
-    container_name: KdlWorkshopSchedule
+    container_name: KcisWorkshopSchedule
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:80
       # - ASPNETCORE_URLS=https://+:443;http://+:80
       - TZ=Asia/Shanghai
@@ -31,3 +73,30 @@ services:
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
     restart: always
+
+  ############################
+  # Dapr placement service
+  ############################
+  placement:
+    image: "daprio/dapr"
+    container_name: Dapr-Placement
+    command: ["./placement", "-port", "50006"]
+    ports:
+      - "50006:50006"
+    networks:
+      - network-dapr
+    restart: always
+  ############################
+  # Redis state store
+  ############################
+  redis:
+    image: "redis:alpine"
+    container_name: Redis
+    ports:
+      - "6380:6379"
+    networks:
+      - network-dapr
+    restart: always
+
+networks:
+  network-dapr:
