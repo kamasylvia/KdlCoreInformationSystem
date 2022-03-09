@@ -28,6 +28,7 @@ public class AESCipher
         aes.Key = _encryptKey;
         aes.IV = ciphertextBytes.Take(BlockSize).ToArray();
         aes.Mode = CipherMode.CBC;
+        aes.Padding = PaddingMode.PKCS7;
 
         var decryptor = aes.CreateDecryptor();
         var blockBytes = decryptor.TransformFinalBlock(

@@ -43,11 +43,10 @@ services:
         "-placement-host-address",
         "placement:50006",
         "-components-path",
-        "/components",
+        "/Dapr/Components",
       ]
     volumes:
-      - ./Dapr/Components/:/components:ro
-      - ./Dapr/Configurations/:/configurations:ro
+      - ./Dapr:/Dapr:ro
     depends_on:
       - lark-api-gateway
     network_mode: service:lark-api-gateway
